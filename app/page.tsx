@@ -87,12 +87,14 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 md:py-32 lg:px-8" id="secteurs">
         <SectionHeading kicker="Une expertise terrain" title="Des solutions pour chaque secteur">Notre architecture modulaire s’adapte précisément aux exigences de votre industrie.</SectionHeading>
-        <ul className="reveal grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+        <ul className="reveal grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
           {sectors.map(({ name, icon: Icon }) => (
             <li key={name}>
-              <Link className="card card-hover group flex h-full min-h-32 flex-col items-center justify-center gap-3 rounded-2xl p-4 text-center text-sm font-semibold text-ink hover:text-accent" href="/secteurs">
-                <span className="grid size-12 place-items-center rounded-2xl bg-accent-soft text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white" aria-hidden="true"><Icon size={22} strokeWidth={1.9} /></span>
-                {name}
+              <Link className="card card-hover group relative flex h-full min-h-44 flex-col items-center justify-center gap-4 overflow-hidden rounded-3xl p-5 text-center text-base font-semibold text-ink hover:scale-[1.02] hover:border-accent/40 hover:text-accent" href="/secteurs">
+                <span className="absolute inset-x-0 top-0 h-1/2 bg-linear-to-b from-accent-soft/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
+                <ArrowUpRight className="absolute right-3 top-3 text-accent opacity-0 transition-all duration-300 group-hover:opacity-100" size={16} aria-hidden="true" />
+                <span className="relative grid size-[4.5rem] place-items-center rounded-[1.4rem] bg-linear-to-br from-accent-soft to-white text-accent shadow-soft ring-1 ring-accent/10 transition-all duration-300 group-hover:from-accent-bright group-hover:to-accent group-hover:text-white group-hover:shadow-glow group-hover:ring-transparent" aria-hidden="true"><Icon size={32} strokeWidth={1.75} /></span>
+                <span className="relative leading-snug">{name}</span>
               </Link>
             </li>
           ))}
