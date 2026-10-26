@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import {
-  ArrowRight, Building2, Bus, Factory, GraduationCap, Hotel, Landmark, Leaf,
-  ShoppingBag, Stethoscope, Tractor, Truck, Users, Utensils, Wrench,
+  ArrowRight, Building2, Bus, CheckCircle2, Factory, GraduationCap, Hotel, Landmark, Leaf,
+  ShoppingBag, Stethoscope, Tractor, TrendingUp, Truck, Users, Utensils, Wrench,
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { onTabListKeyDown } from "@/components/tabs";
@@ -41,43 +41,65 @@ export function SectorExplorer() {
   }
 
   return (
-    <div className="mt-14 grid items-start gap-8 lg:grid-cols-[340px_1fr]">
-      <div>
-        <h2 className="mb-4 text-sm font-bold uppercase tracking-[.12em] text-muted">{sectors.length} secteurs</h2>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-1" role="tablist" aria-label="Secteurs d’activité" aria-orientation="vertical" onKeyDown={(event) => onTabListKeyDown(event, sectors.length, active, setActive)}>
+    <div className="mt-16 grid items-start gap-8 lg:grid-cols-[380px_1fr] lg:gap-10">
+      <div className="rounded-3xl border border-line bg-white/70 p-3 shadow-soft backdrop-blur lg:sticky lg:top-28">
+        <div className="flex items-center justify-between px-3 pb-3 pt-2">
+          <h2 className="kicker text-muted">Choisissez un secteur</h2>
+          <span className="rounded-full bg-accent-soft px-2.5 py-1 text-xs font-bold tabular-nums text-accent">{sectors.length}</span>
+        </div>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:max-h-[calc(100vh-13rem)] lg:grid-cols-1 lg:overflow-y-auto lg:pr-1" role="tablist" aria-label="Secteurs d’activité" aria-orientation="vertical" onKeyDown={(event) => onTabListKeyDown(event, sectors.length, active, setActive)}>
           {sectors.map(({ name, summary, icon: ItemIcon }, index) => {
             const selected = active === index;
             return (
-              <button className={`flex min-h-14 w-full items-center gap-3 rounded-2xl border p-2.5 text-left transition-colors lg:p-3 ${selected ? "border-accent bg-white shadow-sm ring-1 ring-accent" : "border-transparent hover:border-line hover:bg-white"}`} key={name} onClick={() => select(index)} role="tab" id={`sector-tab-${index}`} aria-selected={selected} aria-controls="sector-panel" tabIndex={selected ? 0 : -1}>
-                <span className={`grid size-10 shrink-0 place-items-center rounded-lg transition-colors ${selected ? "bg-accent text-white" : "bg-accent-soft text-accent"}`} aria-hidden="true"><ItemIcon size={20} /></span>
-                <span className="min-w-0">
-                  <span className={`block text-sm font-semibold leading-snug ${selected ? "text-accent" : "text-ink"}`}>{name}</span>
-                  <span className="mt-0.5 hidden text-sm text-muted lg:block">{summary}</span>
+              <button className={`group flex min-h-16 w-full items-center gap-4 rounded-2xl border p-3.5 text-left transition-all duration-200 ${selected ? "border-accent bg-white shadow-lift ring-1 ring-accent" : "border-transparent hover:border-line hover:bg-white hover:shadow-soft"}`} key={name} onClick={() => select(index)} role="tab" id={`sector-tab-${index}`} aria-selected={selected} aria-controls="sector-panel" tabIndex={selected ? 0 : -1}>
+                <span className={`grid size-12 shrink-0 place-items-center rounded-xl transition-colors ${selected ? "bg-accent text-white shadow-glow" : "bg-accent-soft text-accent group-hover:bg-accent/15"}`} aria-hidden="true"><ItemIcon size={22} /></span>
+                <span className="min-w-0 flex-1">
+                  <span className={`block text-base font-semibold leading-snug ${selected ? "text-accent" : "text-ink"}`}>{name}</span>
+                  <span className="mt-0.5 block truncate text-sm text-muted">{summary}</span>
                 </span>
+                <ArrowRight className={`shrink-0 transition-all duration-200 ${selected ? "translate-x-0 text-accent opacity-100" : "-translate-x-1 text-subtle opacity-0 group-hover:translate-x-0 group-hover:opacity-100"}`} size={18} aria-hidden="true" />
               </button>
             );
           })}
         </div>
       </div>
 
-      <article className="overflow-hidden rounded-3xl border border-line bg-white shadow-lift lg:sticky lg:top-28" ref={panelRef} role="tabpanel" id="sector-panel" aria-labelledby={`sector-tab-${active}`}>
-        <div className="border-b border-line bg-linear-to-br from-white to-accent-soft/60 p-6 md:p-10">
-          <div className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-[.12em] text-muted"><Icon className="text-accent" size={20} aria-hidden="true" />Fiche sectorielle</div>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-navy md:text-[2.75rem] md:leading-[1.1]">{sector.name}</h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg">{sector.description}</p>
-          <Link className="btn-primary mt-7" href="/contact">Voir la démo <ArrowRight size={18} aria-hidden="true" /></Link>
-        </div>
+      <article className="overflow-hidden rounded-[2rem] border border-line bg-white shadow-lift" ref={panelRef} role="tabpanel" id="sector-panel" aria-labelledby={`sector-tab-${active}`}>
+        <div className="animate-panel-in" key={active}>
+          <div className="relative overflow-hidden border-b border-line bg-linear-to-br from-white via-white to-accent-soft p-7 md:p-12">
+            <div className="dot-grid absolute inset-y-0 right-0 w-1/2 [mask-image:linear-gradient(to_left,black,transparent)]" aria-hidden="true" />
+            <div className="relative">
+              <div className="flex flex-wrap items-center gap-4">
+                <span className="grid size-16 place-items-center rounded-2xl bg-linear-to-br from-accent-bright to-accent text-white shadow-glow" aria-hidden="true"><Icon size={30} /></span>
+                <div>
+                  <p className="kicker text-muted">Fiche sectorielle</p>
+                  <p className="mt-1 text-sm font-semibold text-accent">{sector.summary}</p>
+                </div>
+              </div>
+              <h2 className="mt-7 text-4xl font-extrabold tracking-tight text-navy md:text-5xl md:leading-[1.05]">{sector.name}</h2>
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{sector.description}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link className="btn-primary px-6 text-base" href="/contact">Voir la démo <ArrowRight size={18} aria-hidden="true" /></Link>
+                <Link className="btn-secondary px-6 text-base" href="/solutions">Explorer les modules</Link>
+              </div>
+            </div>
+          </div>
 
-        <div className="p-6 md:p-10">
-          <h3 className="text-lg font-bold text-navy">Aperçu interface</h3>
-          <InterfacePreview sector={sector} />
-        </div>
+          <div className="p-7 md:p-12">
+            <h3 className="text-xl font-bold text-navy">Aperçu interface</h3>
+            <InterfacePreview sector={sector} />
+          </div>
 
-        <div className="border-t border-line bg-canvas px-6 py-5 md:px-10">
-          <h3 className="text-sm font-bold text-ink">Modules clés</h3>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {sector.modules.map((module) => <li className="rounded-full border border-line bg-white px-3 py-1.5 text-sm text-ink" key={module}>{module}</li>)}
-          </ul>
+          <div className="border-t border-line bg-canvas p-7 md:px-12 md:py-10">
+            <h3 className="text-xl font-bold text-navy">Modules clés</h3>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {sector.modules.map((module) => (
+                <li className="flex items-center gap-3 rounded-2xl border border-line bg-white p-4 text-base font-medium text-ink shadow-soft" key={module}>
+                  <CheckCircle2 className="shrink-0 text-accent" size={22} aria-hidden="true" />{module}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </article>
     </div>
@@ -86,23 +108,26 @@ export function SectorExplorer() {
 
 function InterfacePreview({ sector }: { sector: typeof sectors[number] }) {
   return (
-    <div className="mt-5 grid gap-6 rounded-xl border border-line bg-canvas p-5 md:grid-cols-[.6fr_1.4fr]">
-      <div>
-        <p className="text-sm font-semibold text-muted">{sector.kpiLabel}</p>
-        <p className="mt-1 text-4xl font-extrabold tabular-nums tracking-tight text-navy">{sector.kpi}</p>
-        <div className="mt-5 flex h-16 items-end gap-2" aria-hidden="true">
-          {[24, 32, 47, 42, 61].map((h, i) => <span className="flex-1 rounded-t bg-accent" key={i} style={{ height: h, opacity: 0.35 + i * 0.16 }} />)}
+    <div className="mt-6 grid gap-4 md:grid-cols-[.75fr_1.25fr]">
+      <div className="flex flex-col rounded-2xl bg-navy p-6 text-white">
+        <p className="text-sm font-semibold text-on-navy">{sector.kpiLabel}</p>
+        <p className="mt-2 text-5xl font-extrabold tabular-nums tracking-tight">{sector.kpi}</p>
+        <p className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-light"><TrendingUp size={16} aria-hidden="true" />Résultat moyen client</p>
+        <div className="mt-auto flex h-20 items-end gap-2 pt-6" aria-hidden="true">
+          {[30, 42, 58, 52, 76].map((h, i) => <span className="flex-1 rounded-t-md bg-accent-bright" key={i} style={{ height: h, opacity: 0.35 + i * 0.16 }} />)}
         </div>
       </div>
-      <div>
-        <div className="flex items-center justify-between"><b className="text-sm text-ink">Pilotage {sector.name}</b><span className="rounded-md bg-white px-2.5 py-1 text-xs font-medium text-muted ring-1 ring-line">Semaine</span></div>
-        <svg className="mt-4 h-[130px] w-full" viewBox="0 0 420 130" preserveAspectRatio="none" aria-hidden="true">
-          <defs><linearGradient id="sectorArea" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#0369a1" stopOpacity=".3" /><stop offset="1" stopColor="#0369a1" stopOpacity="0" /></linearGradient></defs>
-          {[33, 66, 99].map((y) => <line key={y} x1="0" x2="420" y1={y} y2={y} stroke="#e2e8f0" />)}
+      <div className="rounded-2xl border border-line bg-canvas p-6">
+        <div className="flex items-center justify-between gap-3"><b className="text-base text-ink">Pilotage {sector.name}</b><span className="shrink-0 rounded-full bg-white px-3 py-1 text-xs font-semibold text-muted ring-1 ring-line">Semaine</span></div>
+        <svg className="mt-5 h-[180px] w-full text-accent" viewBox="0 0 420 130" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="sectorArea" x1="0" y1="0" x2="0" y2="1"><stop stopColor="currentColor" stopOpacity=".3" /><stop offset="1" stopColor="currentColor" stopOpacity="0" /></linearGradient></defs>
+          {[33, 66, 99].map((y) => <line className="text-line" key={y} x1="0" x2="420" y1={y} y2={y} stroke="currentColor" vectorEffect="non-scaling-stroke" />)}
           <path d="M0 108 C45 92,70 105,110 75 S180 93,220 53 S285 80,330 42 S380 51,420 17 L420 130 L0 130Z" fill="url(#sectorArea)" />
-          <path d="M0 108 C45 92,70 105,110 75 S180 93,220 53 S285 80,330 42 S380 51,420 17" fill="none" stroke="#0369a1" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+          <path d="M0 108 C45 92,70 105,110 75 S180 93,220 53 S285 80,330 42 S380 51,420 17" fill="none" stroke="currentColor" strokeWidth="3" vectorEffect="non-scaling-stroke" />
         </svg>
+        <div className="mt-3 flex justify-between text-xs font-medium text-subtle" aria-hidden="true">{["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"].map((d) => <span key={d}>{d}</span>)}</div>
       </div>
     </div>
   );
 }
+

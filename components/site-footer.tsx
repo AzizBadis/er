@@ -33,7 +33,7 @@ export function SiteFooter() {
         <NewsletterForm />
       </div>
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-2 border-t border-line px-4 py-6 text-sm text-subtle sm:flex-row sm:px-6 lg:px-8">
-        <span>© 2026 GSM ERP. Tous droits réservés.</span>
+        <span>© 2026 Pilotadem. Tous droits réservés.</span>
         <span>France · Tunisie · International</span>
       </div>
     </footer>

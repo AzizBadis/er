@@ -6,7 +6,7 @@
 
 ---
 
-**Project:** GSM ERP
+**Project:** Pilotadem
 **Generated:** 2026-10-24 16:41:57
 **Category:** B2B Service
 **Design Dials:** Variance 5/10 (Balanced / Modern) | Motion 3/10 (Subtle) | Density 3/10 (Spacious)

@@ -5,8 +5,8 @@ import { Configurator } from "./configurator";
 import { ModuleExplorer } from "./module-explorer";
 
 export const metadata: Metadata = {
-  title: "Solutions | GSM ERP",
-  description: "Finance, logistique, RH, CRM et opérations : découvrez les modules intégrés de GSM ERP.",
+  title: "Solutions | Pilotadem",
+  description: "Finance, logistique, RH, CRM et opérations : découvrez les modules intégrés de Pilotadem.",
 };
 
 export default function SolutionsPage() {
@@ -24,7 +24,7 @@ export default function SolutionsPage() {
             </div>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-canvas shadow-lift">
-            <Image className="object-cover" src="/erp-dashboard.png" alt="Aperçu de la plateforme GSM ERP" fill priority sizes="(max-width: 1024px) 92vw, 48vw" />
+            <Image className="object-cover" src="/erp-dashboard.png" alt="Aperçu de la plateforme Pilotadem" fill priority sizes="(max-width: 1024px) 92vw, 48vw" />
           </div>
         </div>
       </section>

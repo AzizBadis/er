@@ -4,8 +4,8 @@ import { Check } from "lucide-react";
 import { DemoForm } from "./demo-form";
 
 export const metadata: Metadata = {
-  title: "Réserver une démo | GSM ERP",
-  description: "Réservez une démonstration personnalisée de GSM ERP avec nos experts fonctionnels.",
+  title: "Réserver une démo | Pilotadem",
+  description: "Réservez une démonstration personnalisée de Pilotadem avec nos experts fonctionnels.",
 };
 
 const includes = [
@@ -21,7 +21,7 @@ export default function ContactPage() {
         <div className="max-w-2xl">
           <span className="pill"><span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />Prêt à transformer votre entreprise</span>
           <h1 className="mt-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-navy md:text-5xl">Réservez une démo personnalisée</h1>
-          <p className="mt-5 text-lg leading-relaxed text-muted">Découvrez comment GSM ERP peut optimiser vos processus, réduire vos coûts et accélérer votre croissance grâce à nos solutions sur-mesure.</p>
+          <p className="mt-5 text-lg leading-relaxed text-muted">Découvrez comment Pilotadem peut optimiser vos processus, réduire vos coûts et accélérer votre croissance grâce à nos solutions sur-mesure.</p>
         </div>
 
         <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1.25fr_.75fr]">
@@ -38,7 +38,7 @@ export default function ContactPage() {
               ))}
             </ul>
             <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-xl border border-line">
-              <Image className="object-cover" src="/erp-desktop.jpg" alt="Démonstration de la plateforme GSM ERP" fill sizes="(max-width: 1024px) 90vw, 400px" />
+              <Image className="object-cover" src="/erp-dashboard.png" alt="Démonstration de la plateforme Pilotadem" fill sizes="(max-width: 1024px) 90vw, 400px" />
             </div>
           </aside>
         </div>

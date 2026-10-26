@@ -7,7 +7,7 @@ import "./globals.css";
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "GSM ERP | Votre métier, votre ERP",
+  title: "Pilotadem | Votre métier, votre ERP",
   description: "Une plateforme ERP modulaire pensée pour accélérer votre croissance.",
 };
 

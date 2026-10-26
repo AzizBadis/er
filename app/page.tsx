@@ -58,7 +58,7 @@ export default function Home() {
                 <span className="ml-3 h-5 flex-1 rounded-full bg-white/10" />
               </div>
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
-                <Image className="object-cover" src="/erp-desktop.jpg" alt="Tableau de bord GSM ERP affiché sur un écran d’ordinateur" fill priority sizes="(max-width: 1024px) 92vw, 52vw" />
+                <Image className="object-cover" src="/erp-dashboard.png" alt="Tableau de bord Pilotadem affiché sur un écran d’ordinateur" fill priority sizes="(max-width: 1024px) 92vw, 52vw" />
               </div>
             </div>
             <div className="absolute -bottom-10 -left-2 hidden w-56 animate-float rounded-2xl border border-white/60 bg-white/90 p-4 text-ink shadow-lift backdrop-blur-xl sm:block lg:-left-10" aria-hidden="true">
@@ -130,7 +130,7 @@ export default function Home() {
                 <p className="mt-2 text-sm leading-relaxed text-muted">Validez, consultez et pilotez depuis votre mobile, où que vous soyez.</p>
               </div>
               <div className="relative mt-6 aspect-video overflow-hidden rounded-2xl border border-line md:mt-0 md:w-[46%]">
-                <Image className="object-cover" src="/erp-mobile.jpg" alt="Application mobile GSM ERP affichée sur un téléphone" fill sizes="(max-width: 768px) 90vw, 280px" />
+                <Image className="object-cover" src="/erp-mobile.jpg" alt="Application mobile Pilotadem affichée sur un téléphone" fill sizes="(max-width: 768px) 90vw, 280px" />
               </div>
             </article>
             <BentoTile className="md:col-span-2" icon={Plug} title="Intégrations natives" copy="Banques, e-commerce, transporteurs, paie : connectez vos outils existants sans ressaisie." />
@@ -160,7 +160,7 @@ export default function Home() {
           <div className="aurora absolute inset-0 -z-10" aria-hidden="true" />
           <div className="absolute -right-24 -top-24 -z-10 size-96 rounded-full bg-accent-bright/25 blur-3xl" aria-hidden="true" />
           <div className="max-w-xl">
-            <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl md:leading-[1.08]">Prêt à voir GSM ERP <span className="text-gradient">en action ?</span></h2>
+            <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl md:leading-[1.08]">Prêt à voir Pilotadem <span className="text-gradient">en action ?</span></h2>
             <p className="mt-5 text-lg leading-relaxed text-on-navy">Une démonstration personnalisée, centrée sur vos processus et votre secteur.</p>
           </div>
           <Link className="btn-white shrink-0 px-7 py-4 text-base" href="/contact">Parler à un expert <ArrowUpRight size={18} aria-hidden="true" /></Link>
