@@ -29,7 +29,7 @@ export function Configurator() {
   }
 
   return (
-    <section className="on-dark bg-navy text-white" id="configurateur">
+    <section className="on-dark relative isolate bg-navy-deep text-white" id="configurateur"><div className="aurora absolute inset-0 -z-10" aria-hidden="true" />
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 md:py-28 lg:grid-cols-2 lg:px-8">
         <div>
           <span className="kicker text-accent-light">Configurateur</span>
@@ -41,7 +41,7 @@ export function Configurator() {
           </div>
         </div>
 
-        <div className="on-light overflow-hidden rounded-2xl bg-white text-ink shadow-2xl shadow-black/40">
+        <div className="on-light overflow-hidden rounded-3xl bg-white text-ink shadow-2xl shadow-black/40">
           <div className="h-1.5 bg-line" role="progressbar" aria-label="Progression" aria-valuemin={1} aria-valuemax={3} aria-valuenow={step}>
             <div className="h-full origin-left bg-accent transition-transform duration-300" style={{ transform: `scaleX(${step / 3})` }} />
           </div>
@@ -54,7 +54,7 @@ export function Configurator() {
                 {sectors.map(({ label, icon: Icon }) => {
                   const active = sector === label;
                   return (
-                    <button className={`flex min-h-20 flex-col items-center justify-center gap-1.5 rounded-xl border-2 text-sm font-semibold transition-colors ${active ? "border-accent bg-accent-soft text-accent" : "border-line hover:border-line-strong"}`} key={label} onClick={() => setSector(label)} aria-pressed={active} type="button">
+                    <button className={`flex min-h-20 flex-col items-center justify-center gap-1.5 rounded-2xl border-2 text-sm font-semibold transition-colors ${active ? "border-accent bg-accent-soft text-accent" : "border-line hover:border-line-strong"}`} key={label} onClick={() => setSector(label)} aria-pressed={active} type="button">
                       <Icon size={22} aria-hidden="true" />{label}
                     </button>
                   );
@@ -68,7 +68,7 @@ export function Configurator() {
               <fieldset className="mt-6 space-y-3">
                 <legend className="sr-only">Modules prioritaires</legend>
                 {priorities.map((item) => (
-                  <label className={`flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border-2 px-4 transition-colors ${selected.includes(item) ? "border-accent bg-accent-soft/50" : "border-line hover:border-line-strong"}`} key={item}>
+                  <label className={`flex min-h-14 cursor-pointer items-center gap-3 rounded-2xl border-2 px-4 transition-colors ${selected.includes(item) ? "border-accent bg-accent-soft/50" : "border-line hover:border-line-strong"}`} key={item}>
                     <input className="size-5 accent-accent" type="checkbox" checked={selected.includes(item)} onChange={() => toggle(item)} />
                     <span className="font-semibold">{item}</span>
                   </label>

@@ -16,10 +16,10 @@ const includes = [
 
 export default function ContactPage() {
   return (
-    <section className="bg-linear-to-b from-canvas to-white">
-      <div className="mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 md:pb-28 md:pt-20 lg:px-8">
+    <section className="aurora bg-linear-to-b from-canvas to-white">
+      <div className="mx-auto max-w-7xl px-4 pb-20 pt-32 sm:px-6 md:pb-28 md:pt-40 lg:px-8">
         <div className="max-w-2xl">
-          <span className="kicker text-accent">Prêt à transformer votre entreprise</span>
+          <span className="pill"><span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />Prêt à transformer votre entreprise</span>
           <h1 className="mt-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-navy md:text-5xl">Réservez une démo personnalisée</h1>
           <p className="mt-5 text-lg leading-relaxed text-muted">Découvrez comment GSM ERP peut optimiser vos processus, réduire vos coûts et accélérer votre croissance grâce à nos solutions sur-mesure.</p>
         </div>
@@ -27,7 +27,7 @@ export default function ContactPage() {
         <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1.25fr_.75fr]">
           <DemoForm />
 
-          <aside className="rounded-2xl border border-line bg-white p-7 md:p-8" aria-labelledby="demo-includes">
+          <aside className="card p-7 md:p-8" aria-labelledby="demo-includes">
             <h2 className="text-xl font-bold text-navy" id="demo-includes">Ce que comprend la démo</h2>
             <ul className="mt-6 space-y-5">
               {includes.map(([title, copy]) => (

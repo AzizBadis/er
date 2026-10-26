@@ -48,7 +48,7 @@ export function SectorExplorer() {
           {sectors.map(({ name, summary, icon: ItemIcon }, index) => {
             const selected = active === index;
             return (
-              <button className={`flex min-h-14 w-full items-center gap-3 rounded-xl border p-2.5 text-left transition-colors lg:p-3 ${selected ? "border-accent bg-white shadow-sm ring-1 ring-accent" : "border-transparent hover:border-line hover:bg-white"}`} key={name} onClick={() => select(index)} role="tab" id={`sector-tab-${index}`} aria-selected={selected} aria-controls="sector-panel" tabIndex={selected ? 0 : -1}>
+              <button className={`flex min-h-14 w-full items-center gap-3 rounded-2xl border p-2.5 text-left transition-colors lg:p-3 ${selected ? "border-accent bg-white shadow-sm ring-1 ring-accent" : "border-transparent hover:border-line hover:bg-white"}`} key={name} onClick={() => select(index)} role="tab" id={`sector-tab-${index}`} aria-selected={selected} aria-controls="sector-panel" tabIndex={selected ? 0 : -1}>
                 <span className={`grid size-10 shrink-0 place-items-center rounded-lg transition-colors ${selected ? "bg-accent text-white" : "bg-accent-soft text-accent"}`} aria-hidden="true"><ItemIcon size={20} /></span>
                 <span className="min-w-0">
                   <span className={`block text-sm font-semibold leading-snug ${selected ? "text-accent" : "text-ink"}`}>{name}</span>
@@ -60,7 +60,7 @@ export function SectorExplorer() {
         </div>
       </div>
 
-      <article className="overflow-hidden rounded-2xl border border-line bg-white shadow-xl shadow-navy/5 lg:sticky lg:top-24" ref={panelRef} role="tabpanel" id="sector-panel" aria-labelledby={`sector-tab-${active}`}>
+      <article className="overflow-hidden rounded-3xl border border-line bg-white shadow-lift lg:sticky lg:top-28" ref={panelRef} role="tabpanel" id="sector-panel" aria-labelledby={`sector-tab-${active}`}>
         <div className="border-b border-line bg-linear-to-br from-white to-accent-soft/60 p-6 md:p-10">
           <div className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-[.12em] text-muted"><Icon className="text-accent" size={20} aria-hidden="true" />Fiche sectorielle</div>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-navy md:text-[2.75rem] md:leading-[1.1]">{sector.name}</h2>

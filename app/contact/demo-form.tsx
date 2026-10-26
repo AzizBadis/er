@@ -35,7 +35,7 @@ export function DemoForm() {
 
   return (
     <div>
-      <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-xl shadow-navy/5">
+      <div className="overflow-hidden rounded-3xl border border-line bg-white shadow-lift">
         <ol className="grid grid-cols-3 border-b border-line bg-canvas" aria-label="Étapes de la demande">
           {stepLabels.map((label, index) => {
             const n = index + 1;

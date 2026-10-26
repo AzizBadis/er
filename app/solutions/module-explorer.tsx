@@ -52,11 +52,11 @@ export function ModuleExplorer() {
           <p className="mt-4 text-lg text-muted">Sélectionnez un domaine pour découvrir les modules spécifiques et leurs fonctionnalités clés.</p>
         </div>
 
-        <div className="mt-10 flex gap-1 overflow-x-auto rounded-xl border border-line bg-canvas p-1.5 lg:justify-center" role="tablist" aria-label="Domaines fonctionnels" onKeyDown={(event) => onTabListKeyDown(event, tabs.length, activeTab, setActiveTab)}>
+        <div className="mt-10 flex gap-1 overflow-x-auto rounded-full border border-line bg-canvas p-1.5 lg:mx-auto lg:w-fit" role="tablist" aria-label="Domaines fonctionnels" onKeyDown={(event) => onTabListKeyDown(event, tabs.length, activeTab, setActiveTab)}>
           {tabs.map((tab, index) => {
             const selected = activeTab === index;
             return (
-              <button className={`min-h-11 shrink-0 rounded-lg px-4 text-sm font-semibold transition-colors ${selected ? "bg-white text-accent shadow-sm ring-1 ring-line" : "text-muted hover:text-ink"}`} key={tab.label} onClick={() => setActiveTab(index)} role="tab" id={`tab-${index}`} aria-selected={selected} aria-controls="module-panel" tabIndex={selected ? 0 : -1}>
+              <button className={`min-h-11 shrink-0 rounded-full px-4 text-sm font-semibold transition-colors ${selected ? "bg-white text-accent shadow-sm ring-1 ring-line" : "text-muted hover:text-ink"}`} key={tab.label} onClick={() => setActiveTab(index)} role="tab" id={`tab-${index}`} aria-selected={selected} aria-controls="module-panel" tabIndex={selected ? 0 : -1}>
                 {tab.label}
               </button>
             );
@@ -68,7 +68,7 @@ export function ModuleExplorer() {
             <h3 className="text-2xl font-bold text-navy">{current.title}</h3>
             <ul className="mt-5 space-y-3">
               {current.modules.map(([title, copy]) => (
-                <li className="rounded-xl border border-line bg-white p-5" key={title}>
+                <li className="card card-hover rounded-2xl p-5" key={title}>
                   <h4 className="font-bold text-ink">{title}</h4>
                   <p className="mt-1 text-sm leading-relaxed text-muted">{copy}</p>
                 </li>
@@ -96,7 +96,7 @@ export function ModuleExplorer() {
 
 function DashboardPreview({ title }: { title: string }) {
   return (
-    <figure className="overflow-hidden rounded-2xl border border-line bg-white shadow-lg shadow-navy/5" aria-label={`Illustration du tableau de bord ${title}`}>
+    <figure className="overflow-hidden rounded-3xl border border-line bg-white shadow-lift" aria-label={`Illustration du tableau de bord ${title}`}>
       <div className="flex h-12 items-center justify-between border-b border-line px-4">
         <div className="flex items-center gap-2 text-sm font-bold text-ink"><span className="grid size-7 place-items-center rounded-md bg-navy text-white" aria-hidden="true"><BarChart3 size={14} /></span>Vue d’ensemble {title}</div>
         <span className="rounded-md bg-canvas px-2.5 py-1 text-xs font-medium text-muted">T4 2026</span>
