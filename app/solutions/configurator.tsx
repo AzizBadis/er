@@ -87,7 +87,7 @@ export function Configurator() {
               <ul className="mt-5 flex flex-wrap justify-center gap-2">
                 {selected.map((item) => <li className="rounded-full bg-canvas px-3 py-1.5 text-sm font-medium text-ink ring-1 ring-line" key={item}>{item}</li>)}
               </ul>
-              <Link className="btn-primary mt-7" href="/contact">Recevoir mon estimation <ArrowRight size={18} aria-hidden="true" /></Link>
+              <Link className="btn-primary mt-7" href={`/contact?${new URLSearchParams([["secteur", sector], ...selected.map(m => ["modules", m])])}`}>Recevoir mon estimation <ArrowRight size={18} aria-hidden="true" /></Link>
               <button className="mx-auto mt-3 block min-h-11 text-sm font-semibold text-muted underline underline-offset-4 hover:text-ink" onClick={() => setStep(1)} type="button">Recommencer</button>
             </div>}
           </div>

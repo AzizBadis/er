@@ -2,6 +2,7 @@
 
 import { ArrowLeft, ArrowRight, Building2, CalendarDays, Check, Lock, Mail, Phone } from "lucide-react";
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { createProjectRequest } from "./actions";
 
 type DemoForm = {
   firstName: string;
@@ -16,9 +17,11 @@ type DemoForm = {
 const initialForm: DemoForm = { firstName: "", lastName: "", email: "", phone: "", company: "", demoDate: "", need: "" };
 const stepLabels = ["Coordonnées", "Entreprise", "Confirmation"];
 
-export function DemoForm() {
+export function DemoForm({ sector, modules = [] }: { sector?: string; modules?: string[] }) {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState(initialForm);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
   const headingRef = useRef<HTMLHeadingElement>(null);
   const firstRender = useRef(true);
 
@@ -29,7 +32,19 @@ export function DemoForm() {
 
   function update(field: keyof DemoForm, value: string) { setForm(current => ({ ...current, [field]: value })); }
   function next(event: FormEvent<HTMLFormElement>) { event.preventDefault(); setStep(2); }
-  function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); setStep(3); }
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setPending(true);
+    setError("");
+    try {
+      const result = await createProjectRequest({ ...form, sector, modules });
+      if (result.ok) setStep(3); else setError(result.error);
+    } catch {
+      setError("Votre demande n’a pas pu être envoyée. Vérifiez votre connexion et réessayez.");
+    } finally {
+      setPending(false);
+    }
+  }
 
   const formattedDate = form.demoDate ? new Date(`${form.demoDate}T00:00`).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "";
 
@@ -67,14 +82,16 @@ export function DemoForm() {
 
           {step === 2 && <form onSubmit={submit}>
             <h2 className="text-xl font-bold text-navy outline-none" ref={headingRef} tabIndex={-1}>Votre entreprise</h2>
+            {sector && <p className="mt-3 text-sm text-muted">Configuration jointe : <b className="text-ink">{sector}</b>{modules.length > 0 && <> · {modules.join(", ")}</>}</p>}
             <div className="mt-6 space-y-5">
             <Field label="Entreprise" id="company"><IconInput icon={<Building2 size={18} />}><input className="field pl-11" id="company" value={form.company} onChange={e => update("company", e.target.value)} autoComplete="organization" required /></IconInput></Field>
-            <Field label="Date souhaitée pour la démonstration" id="demoDate"><IconInput icon={<CalendarDays size={18} />}><input className="field pl-11" id="demoDate" value={form.demoDate} onChange={e => update("demoDate", e.target.value)} type="date" required /></IconInput></Field>
+            <Field label="Date souhaitée pour la démonstration" id="demoDate"><IconInput icon={<CalendarDays size={18} />}><input className="field pl-11" id="demoDate" value={form.demoDate} onChange={e => update("demoDate", e.target.value)} type="date" min={new Date().toISOString().slice(0, 10)} required /></IconInput></Field>
             <Field label="Votre besoin principal" id="need" hint="Quelques lignes suffisent : contexte, outils actuels, objectifs."><textarea className="field min-h-32 resize-y" id="need" aria-describedby="need-hint" value={form.need} onChange={e => update("need", e.target.value)} required /></Field>
             </div>
+            {error && <p className="mt-5 rounded-lg bg-red-50 px-3 py-3 text-sm font-semibold text-red-700" role="alert">{error}</p>}
             <div className="mt-7 flex gap-3">
-              <button className="btn-secondary" type="button" onClick={() => setStep(1)}><ArrowLeft size={18} aria-hidden="true" /> Retour</button>
-              <button className="btn-primary flex-1" type="submit">Réserver ma démo <ArrowRight size={18} aria-hidden="true" /></button>
+              <button className="btn-secondary" type="button" onClick={() => setStep(1)} disabled={pending}><ArrowLeft size={18} aria-hidden="true" /> Retour</button>
+              <button className="btn-primary flex-1" type="submit" disabled={pending} aria-busy={pending}>{pending ? "Envoi en cours…" : <>Réserver ma démo <ArrowRight size={18} aria-hidden="true" /></>}</button>
             </div>
           </form>}
 

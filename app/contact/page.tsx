@@ -14,7 +14,9 @@ const includes = [
   ["Questions / Réponses", "Temps dédié avec nos experts fonctionnels."],
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ secteur?: string; modules?: string | string[] }> }) {
+  const { secteur, modules } = await searchParams;
+  const selectedModules = typeof modules === "string" ? [modules] : modules ?? [];
   return (
     <section className="aurora bg-linear-to-b from-canvas to-white">
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-32 sm:px-6 md:pb-28 md:pt-40 lg:px-8">
@@ -25,7 +27,7 @@ export default function ContactPage() {
         </div>
 
         <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1.25fr_.75fr]">
-          <DemoForm />
+          <DemoForm sector={secteur} modules={selectedModules} />
 
           <aside className="card p-7 md:p-8" aria-labelledby="demo-includes">
             <h2 className="text-xl font-bold text-navy" id="demo-includes">Ce que comprend la démo</h2>
